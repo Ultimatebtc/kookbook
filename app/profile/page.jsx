@@ -18,18 +18,18 @@ const page = async () => {
   }
 
   const fetchRecipe = async () => {
-     const docRef = collection(db, "recipes");
-     const q = query(docRef, where("authorId", "==", uid));
-     
-     const querySnapshot = await getDoc(q) 
-     querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
-        console.log(doc.id, " => ", doc.data());
-     });
-      
-      // console.error("Error fetching user's recipe:", error);
-      // alert("Error fetching recipes");
-    };
+    const docRef = collection(db, "recipes");
+    const q = query(docRef, where("authorId", "==", uid));
+
+    const querySnapshot = await getDoc(q)
+    querySnapshot.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      console.log(doc.id, " => ", doc.data());
+    });
+
+    // console.error("Error fetching user's recipe:", error);
+    // alert("Error fetching recipes");
+  };
   fetchRecipe();
 
   let x = name.split(" ")
@@ -39,7 +39,8 @@ const page = async () => {
   return (
     <main className="min-h-dvh p-3 z-20">
       <section className="">
-        <div className="h-[30vh] bg-[url('/beautifulworld.jpg')] bg-no-repeat bg-center bg-cover relative">
+        <div className="h-[30vh] bg-[url('/beautifulworld.jpg')] bg-no-repeat bg-center bg-cover relative max-md:flex 
+        items-center justify-center">
           <img
             src={session?.user?.image}
             alt={session?.user?.name.slice(0, 1).toUpperCase()}
@@ -61,7 +62,7 @@ const page = async () => {
 
       <EditProfile currentName={name} userId={uid} />
 
-      <ProfileRecipes session={session}/>
+      <ProfileRecipes session={session} />
 
 
 
